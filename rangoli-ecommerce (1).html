@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rangoli Concepts — Surfaces, Sanitaryware & Bath</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --white:#FFFFFF;
+  --gold:#B89A62;
+  --gold-deep:#9C7A3C;
+  --ink:#1C1C1A;
+  --ink-2:#6F6C66;
+  --stone:#EAE8E3;
+  --line:#E5E2DC;
+  --faint:#B4B0A7;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+  --pad:40px;
+  --sec:118px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.01em}
+p{margin:0}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+a{color:inherit;text-decoration:none}
+input,select{font:inherit;color:inherit}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.shell{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.sec{padding:var(--sec) 0}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+.lede{color:var(--ink-2);font-size:16px;max-width:58ch}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+.d1{font-size:clamp(42px,5.4vw,74px);line-height:1.02;font-weight:300}
+.d2{font-size:clamp(28px,3.4vw,44px);font-weight:300}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 30px;font-size:13.5px;letter-spacing:.02em;border:1px solid transparent;border-radius:1px;transition:background .25s,color .25s,border-color .25s;cursor:pointer}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--gold-deep)}
+.btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.tlink{font-size:13px;color:var(--ink);padding-bottom:2px;border-bottom:1px solid var(--line);transition:border-color .25s,color .25s}
+.tlink:hover{border-color:var(--gold);color:var(--gold-deep)}
+.tlink.gold{color:var(--gold-deep);border-color:rgba(184,154,98,.45)}
+
+/* utility + header */
+.utility{font-size:11.5px;color:var(--ink-2)}
+.utility .shell{display:flex;justify-content:space-between;gap:24px;padding-top:11px;padding-bottom:11px}
+.utility a:hover{color:var(--gold-deep)}
+header.site{position:sticky;top:0;z-index:60;background:rgba(250,249,246,.92);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+header.site.stuck{border-color:var(--line);background:rgba(250,249,246,.97)}
+.bar{display:flex;align-items:center;gap:40px;padding:22px 0}
+.logo{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.logo img{height:44px;width:auto}
+.logo .wm b{font-family:var(--serif);font-size:23px;font-weight:400;letter-spacing:.06em;display:block;line-height:1}
+.logo .wm small{font-size:9px;letter-spacing:.3em;color:var(--ink-2)}
+.logo .rmark{width:32px;height:32px;flex:0 0 32px;border:1px solid var(--gold);border-radius:50%;position:relative}
+.logo .rmark::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--gold);opacity:.5}
+nav.main{display:flex;gap:34px;margin:0 auto}
+nav.main a{font-size:13.5px;color:var(--ink-2);padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+nav.main a:hover,nav.main a.on{color:var(--ink);border-color:var(--gold)}
+.hright{display:flex;align-items:center;gap:26px;flex:0 0 auto}
+.hright button{font-size:13px;color:var(--ink-2);transition:color .2s}
+.hright button:hover{color:var(--ink)}
+.hright .count{color:var(--gold-deep);font-variant-numeric:tabular-nums}
+.who{line-height:1.25;text-align:right}
+.who b{display:block;font-size:12.5px;font-weight:500}
+.who em{font-style:normal;font-size:11px;color:var(--ink-2)}
+.searchrow{border-top:1px solid var(--line)}
+.searchrow[hidden]{display:none}
+.searchrow .shell{display:flex;align-items:center;gap:16px;padding-top:16px;padding-bottom:16px}
+.searchrow input{flex:1;border:0;background:transparent;font-family:var(--serif);font-size:19px;padding:4px 0}
+.searchrow input:focus{outline:none}
+.searchrow input::placeholder{color:var(--faint)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);border-top:1px solid var(--line)}
+.hero .copy{padding:clamp(56px,7vw,110px) clamp(24px,4vw,72px) clamp(56px,7vw,110px) var(--pad);display:flex;flex-direction:column;justify-content:center;max-width:720px;margin-left:auto;width:100%}
+.hero h1{margin:22px 0 24px}
+.hero .cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+.hero .art{background:var(--stone) center/cover no-repeat;min-height:min(84vh,760px)}
+
+/* credibility */
+.cred{padding:clamp(70px,8vw,112px) 0}
+.cred .statement{max-width:22ch}
+.cred .row{display:flex;gap:clamp(30px,6vw,88px);margin-top:56px;flex-wrap:wrap}
+.cred .row b{display:block;font-family:var(--serif);font-size:34px;font-weight:300;line-height:1}
+.cred .row span{font-size:12.5px;color:var(--ink-2)}
+
+/* section head */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:52px;flex-wrap:wrap}
+.head h2{margin-top:16px}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,38px)}
+.cat{display:block}
+.cat .art{display:block;aspect-ratio:4/5;background:var(--stone);overflow:hidden}
+.cat .art img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+.cat:hover .art img{transform:scale(1.03)}
+.cat h3{font-size:21px;margin-top:20px}
+.cat span{font-size:12.5px;color:var(--ink-2)}
+.cat.on h3{color:var(--gold-deep)}
+.cat.on .art{outline:1px solid var(--gold);outline-offset:6px}
+
+/* brands */
+.brandstrip{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.brandstrip button{flex:1 1 12.5%;padding:34px 12px;text-align:center;font-family:var(--serif);font-size:19px;color:var(--ink-2);border-right:1px solid var(--line);transition:color .25s,background .25s;white-space:nowrap}
+.brandstrip button:last-child{border-right:0}
+.brandstrip button:hover{color:var(--ink);background:var(--white)}
+.brandstrip button.on{color:var(--gold-deep);background:var(--white)}
+
+/* notice */
+.notice{display:flex;gap:18px;align-items:baseline;padding-bottom:40px;font-size:13.5px;color:var(--ink-2);max-width:78ch}
+.notice b{color:var(--ink);font-weight:500}
+.notice .k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);white-space:nowrap}
+
+/* catalogue */
+.cat-wrap{display:grid;grid-template-columns:210px 1fr;gap:clamp(38px,5vw,84px);align-items:start}
+aside{position:sticky;top:104px}
+.fhead{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--ink)}
+.fhead h3{font-size:17px}
+.fhead button{font-size:12px;color:var(--ink-2)}
+.fhead button:hover{color:var(--gold-deep)}
+.group{border-bottom:1px solid var(--line);padding:18px 0}
+.group>h4{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+.group>h4 .cnt{font-size:11px;color:var(--ink-2);font-weight:400}
+.opts{margin-top:16px;display:flex;flex-direction:column;gap:11px;max-height:250px;overflow:auto}
+.group.collapsed .opts{display:none}
+.opt{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--ink-2);cursor:pointer;transition:color .2s}
+.opt:hover{color:var(--ink)}
+.opt input{appearance:none;width:12px;height:12px;flex:0 0 12px;border:1px solid #C8C4BA;cursor:pointer;transition:background .2s,border-color .2s}
+.opt input:checked{background:var(--ink);border-color:var(--ink)}
+.opt .n{margin-left:auto;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.brandlock{margin-top:26px;font-size:12px;color:var(--ink-2);line-height:1.7;border-left:1px solid var(--gold);padding-left:16px}
+.brandlock b{display:block;color:var(--ink);font-weight:500;margin-bottom:5px;font-size:12.5px}
+
+.toolbar{display:flex;align-items:center;gap:20px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:34px}
+.toolbar .resn{font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.toolbar select{border:0;background:transparent;font-size:13px;cursor:pointer;margin-left:auto;padding:2px 0}
+.toolbar select:focus{outline:none;color:var(--gold-deep)}
+.chips{display:flex;gap:20px;flex-wrap:wrap;margin:-16px 0 32px}
+.chip{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2)}
+.chip button{font-size:14px;line-height:1;color:var(--faint)}
+.chip button:hover{color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.2vw,50px) clamp(20px,2.4vw,34px)}
+.card{display:flex;flex-direction:column}
+.card .art{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--stone)}
+.card .fill{position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+.card:hover .fill{transform:scale(1.025)}
+.card .sz{position:absolute;left:0;bottom:0;background:rgba(255,255,255,.88);font-size:10.5px;letter-spacing:.04em;padding:5px 10px;font-variant-numeric:tabular-nums}
+.card .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-top:20px}
+.card h3{font-size:19px;margin-top:8px}
+.card .meta{font-size:12.5px;color:var(--ink-2);margin-top:6px}
+.card .buy{margin-top:18px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+.price b{font-family:var(--serif);font-size:22px;font-weight:400;font-variant-numeric:tabular-nums}
+.price span{font-size:12px;color:var(--ink-2)}
+.price .mrp{display:block;font-size:11.5px;color:var(--faint);text-decoration:line-through;margin-top:2px}
+.card .buy .tlink{white-space:nowrap}
+.empty{grid-column:1/-1;padding:90px 0;text-align:center;color:var(--ink-2)}
+.empty b{display:block;font-family:var(--serif);font-size:24px;font-weight:400;color:var(--ink);margin-bottom:10px}
+
+/* closing */
+.closing{background:var(--white);border-top:1px solid var(--line)}
+.closing .shell{padding:clamp(76px,9vw,130px) var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.closing h2{max-width:17ch;margin-top:16px}
+.closing .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.closing .addr{font-size:13.5px;color:var(--ink-2);line-height:2}
+.closing .addr b{display:block;color:var(--ink);font-weight:500;margin-bottom:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.closing .addr a:hover{color:var(--gold-deep)}
+
+/* footer */
+footer.site{background:var(--ink);color:#A8A49B;font-size:13px;padding:clamp(64px,7vw,96px) 0 34px}
+footer .fin{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px}
+footer h4{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6F6C66;font-weight:500;margin-bottom:20px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+footer a:hover{color:var(--gold)}
+footer .logo .wm b{color:#F2F0EB}
+footer .logo .wm small{color:#6F6C66}
+footer .about{margin-top:26px;max-width:36ch;color:#84807A;line-height:1.85}
+footer .copy{margin-top:72px;padding-top:24px;border-top:1px solid rgba(255,255,255,.09);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11.5px;color:#6F6C66}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(28,28,26,.32);z-index:90}
+.scrim[hidden]{display:none}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:100;display:flex;flex-direction:column}
+.drawer[hidden]{display:none}
+.dhead{padding:28px 32px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line)}
+.dhead h3{font-size:22px}
+.dhead button{font-size:12px;color:var(--ink-2)}
+.ditems{flex:1;overflow:auto;padding:0 32px}
+.ditem{display:flex;gap:16px;padding:24px 0;border-bottom:1px solid var(--line)}
+.ditem .th{width:62px;height:78px;flex:0 0 62px;background:var(--stone)}
+.ditem h4{font-size:15px}
+.ditem small{display:block;color:var(--ink-2);font-size:11.5px;margin-top:5px}
+.qty{display:flex;align-items:center;gap:14px;margin-top:14px}
+.qty button{font-size:15px;color:var(--ink-2);line-height:1}
+.qty button:hover{color:var(--ink)}
+.qty span{font-size:13px;min-width:14px;text-align:center;font-variant-numeric:tabular-nums}
+.ditem .rt{margin-left:auto;text-align:right;font-size:14px;font-variant-numeric:tabular-nums}
+.ditem .rt small{color:var(--faint);font-size:11px}
+.ditem .rm{font-size:11.5px;color:var(--faint);margin-top:12px}
+.ditem .rm:hover{color:var(--ink)}
+.dfoot{border-top:1px solid var(--line);padding:26px 32px 32px}
+.trow{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin-bottom:10px}
+.trow.total{font-size:14px;color:var(--ink);border-top:1px solid var(--line);padding-top:16px;margin:18px 0 22px;align-items:baseline}
+.trow.total span:last-child{font-family:var(--serif);font-size:22px}
+.dempty{padding:80px 0;text-align:center;color:var(--ink-2);font-size:13.5px}
+.dempty b{display:block;font-family:var(--serif);font-size:21px;font-weight:400;color:var(--ink);margin-bottom:10px}
+.dfoot .btn{width:100%}
+.dfoot .btn+.btn{margin-top:10px}
+
+/* login */
+.modalwrap{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:24px;background:rgba(28,28,26,.4)}
+.modalwrap[hidden]{display:none}
+.modal{width:min(960px,100%);background:var(--bg);display:grid;grid-template-columns:1fr 1fr;max-height:92vh;position:relative}
+.mpanel{background:var(--stone) center/cover no-repeat;position:relative;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;padding:44px}
+.mpanel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,28,26,.2),rgba(28,28,26,.74))}
+.mpanel>*{position:relative;z-index:2;color:#F2F0EB}
+.mpanel h2{font-size:31px;font-weight:300;max-width:14ch;margin-bottom:18px}
+.mpanel p{font-size:14px;color:#DAD6CE;max-width:34ch}
+.mpanel ul{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:10px;font-size:13px;color:#CFCAC1}
+.mpanel li{padding-left:18px;position:relative}
+.mpanel li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--gold)}
+.mform{padding:52px 48px;overflow:auto}
+.mform h3{font-size:28px;font-weight:300}
+.mform>p{margin:12px 0 32px;color:var(--ink-2);font-size:14px}
+.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.tabs button{padding-bottom:12px;font-size:13px;color:var(--ink-2);border-bottom:1px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-color:var(--ink)}
+.field{margin-bottom:24px}
+.field label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.field input{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;padding:8px 0;font-size:15px}
+.field input:focus{outline:none;border-color:var(--ink)}
+.field .err{color:#9B3B2E;font-size:12px;margin-top:8px;display:none}
+.field.bad input{border-color:#9B3B2E}
+.field.bad .err{display:block}
+.row{display:flex;align-items:center;justify-content:space-between;margin:6px 0 30px;font-size:12.5px;color:var(--ink-2)}
+.row label{display:flex;gap:9px;align-items:center;cursor:pointer}
+.row label input{appearance:none;width:12px;height:12px;border:1px solid #C8C4BA;cursor:pointer}
+.row label input:checked{background:var(--ink);border-color:var(--ink)}
+.row button{font-size:12.5px;color:var(--ink-2)}
+.row button:hover{color:var(--gold-deep)}
+.mform .btn-primary{width:100%}
+.alt{margin-top:26px;font-size:12.5px;color:var(--ink-2)}
+.alt button{color:var(--ink);border-bottom:1px solid var(--line);font-size:12.5px}
+.demohint{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:#8E8A83;line-height:1.7}
+.x{position:absolute;right:20px;top:12px;font-size:24px;line-height:1;color:var(--ink-2);z-index:5}
+.x:hover{color:var(--ink)}
+
+/* toast + demo */
+.toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,14px);z-index:130;background:var(--ink);color:#F2F0EB;padding:14px 26px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.demo{position:fixed;left:24px;bottom:24px;z-index:80;background:var(--white);border:1px solid var(--line);padding:11px 16px;display:flex;align-items:center;gap:14px;font-size:11.5px;color:var(--ink-2)}
+.demo .dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.demo .dot.on{background:#5E7A4E}
+.demo button{font-size:11.5px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:1px}
+.demo button:hover{border-color:var(--gold)}
+
+@media (max-width:1100px){
+  :root{--pad:28px;--sec:84px}
+  nav.main{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero .copy{max-width:none;padding:64px var(--pad) 56px}
+  .hero .art{min-height:52vh}
+  .cats,.grid{grid-template-columns:repeat(2,1fr)}
+  .cat-wrap{grid-template-columns:1fr;gap:34px}
+  aside{position:static}
+  .opts{max-height:none}
+  .closing .shell{grid-template-columns:1fr;gap:40px}
+  footer .fin{grid-template-columns:1fr 1fr}
+  .brandstrip button{flex:1 1 25%;border-bottom:1px solid var(--line);padding:24px 10px;font-size:17px}
+  .modal{grid-template-columns:1fr;overflow:auto}
+  .mpanel{min-height:200px;padding:32px}
+  .mpanel ul{display:none}
+  .mform{padding:36px 28px}
+}
+@media (max-width:640px){
+  :root{--sec:68px}
+  .cats{grid-template-columns:1fr}
+  .grid{gap:34px 18px}
+  .card h3{font-size:16px}
+  .card .buy{flex-direction:column;align-items:flex-start;gap:12px}
+  .utility .shell span:first-child{max-width:70%}
+  .hright{gap:18px}
+  .demo{left:16px;right:16px;bottom:16px;justify-content:space-between}
+  footer .fin{grid-template-columns:1fr;gap:36px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="utility">
+  <div class="shell">
+    <span>Showroom — Marble Market, Katraj, Pune. Open daily, 10am to 8pm.</span>
+    <span><a href="tel:+919822372299">+91 98223 72299</a></span>
+  </div>
+</div>
+
+<header class="site" id="header">
+  <div class="shell bar">
+    <a class="logo" href="#" id="logo"></a>
+    <nav class="main">
+      <a href="#catalogue" class="on">Catalogue</a>
+      <a href="#collections">Collections</a>
+      <a href="#catalogue" data-cat="Tiles">Surfaces</a>
+      <a href="#catalogue" data-cat="Sanitaryware">Bath</a>
+      <a href="#about">The house</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="hright" id="hright"></div>
+  </div>
+  <div class="searchrow" id="searchrow" hidden>
+    <div class="shell">
+      <input id="search" type="search" placeholder="Search surfaces, fittings, finishes" aria-label="Search products">
+      <button id="closeSearch" style="font-size:12px;color:var(--ink-2)">Close</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="copy">
+    <span class="eyebrow">Pune, since 1994</span>
+    <h1 class="d1">Surfaces chosen the way architects choose them.</h1>
+    <p class="lede">Three decades of tile, stone, sanitaryware and bath fittings, held in stock and specified to the millimetre. Now available to order.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#catalogue">View the catalogue</a>
+      <button class="btn btn-ghost" data-login="1">Sign in for pricing</button>
+    </div>
+  </div>
+  <div class="art" id="heroArt"></div>
+</section>
+
+<hr class="rule">
+
+<section class="cred" id="about">
+  <div class="shell">
+    <p class="d2 statement">Over three decades of shaping the spaces Pune lives in.</p>
+    <div class="row">
+      <div><b>1994</b><span>Established</span></div>
+      <div><b>100+</b><span>Dealers</span></div>
+      <div><b>300+</b><span>Architects</span></div>
+      <div><b>100+</b><span>Builders</span></div>
+      <div><b>50,000</b><span>Orders delivered</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="collections" style="padding-top:0">
+  <div class="shell">
+    <div class="head">
+      <div>
+        <span class="eyebrow">Collections</span>
+        <h2 class="d2">Six ways into the showroom</h2>
+      </div>
+      <button class="tlink" id="clearCat">View everything</button>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<section id="brandSec">
+  <div class="shell" style="padding-bottom:24px"><span class="eyebrow">Authorised dealer</span></div>
+  <div class="brandstrip" id="brands"></div>
+</section>
+
+<section class="sec" id="catalogue">
+  <div class="shell">
+    <div class="head">
+      <div>
+        <span class="eyebrow">Catalogue</span>
+        <h2 class="d2">Everything we hold in stock</h2>
+      </div>
+    </div>
+    <div id="notice"></div>
+    <div class="cat-wrap">
+      <aside>
+        <div class="fhead"><h3>Filter</h3><button id="clearAll">Clear</button></div>
+        <div id="filterGroups"></div>
+        <div class="brandlock" id="brandLock" hidden>
+          <b>Brand names are hidden</b>
+          Signed-in clients specify by material and finish. Everything ships under a Rangoli reference, with the same warranty and installation support.
+        </div>
+      </aside>
+      <main>
+        <div class="toolbar">
+          <span class="resn" id="resn"></span>
+          <select id="sort" aria-label="Sort products"></select>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="grid" id="grid"></div>
+      </main>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="visit">
+  <div class="shell">
+    <div>
+      <span class="eyebrow">Visit</span>
+      <h2 class="d2">Samples are best seen in daylight. Ours sit by the window.</h2>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://maps.app.goo.gl/TJeWvss9936Rc9NJ7">Get directions</a>
+        <a class="btn btn-ghost" href="https://wa.me/919822372299">Message on WhatsApp</a>
+      </div>
+    </div>
+    <div class="addr">
+      <b>Rangoli Concepts (India) Pvt. Ltd.</b>
+      Sr. No. 40/1, Marble Market, near Shell petrol pump,<br>
+      Ambegaon, Mumbai–Pune Bypass Road, Katraj, Pune 411046<br>
+      <a href="mailto:sales@rangoli.net.in">sales@rangoli.net.in</a><br>
+      <a href="tel:+919822372299">+91 98223 72299</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="shell">
+    <div class="fin">
+      <div>
+        <a class="logo" href="#" id="logoFoot"></a>
+        <p class="about">Tile, natural stone, sanitaryware, wellness and bath fittings for homes, architects and builders across Maharashtra.</p>
+      </div>
+      <div><h4>Catalogue</h4><ul>
+        <li><a href="#catalogue">Tiles</a></li><li><a href="#catalogue">CP fittings</a></li>
+        <li><a href="#catalogue">Sanitaryware</a></li><li><a href="#catalogue">Wellness</a></li>
+        <li><a href="#catalogue">Adhesives &amp; tools</a></li></ul></div>
+      <div><h4>The house</h4><ul>
+        <li><a href="#">Company profile</a></li><li><a href="#">Timeline</a></li>
+        <li><a href="#">Chairman's message</a></li><li><a href="#">Clients</a></li>
+        <li><a href="#">Packaging &amp; delivery</a></li></ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:sales@rangoli.net.in">sales@rangoli.net.in</a></li>
+        <li><a href="tel:+919822372299">+91 98223 72299</a></li>
+        <li><a href="https://www.instagram.com/rangoli_concepts_india_pvt.ltd/">Instagram</a></li>
+        <li><a href="https://www.facebook.com/rangoliceratilespune">Facebook</a></li>
+        <li><a href="https://youtube.com/@rangoliconcepts">YouTube</a></li></ul></div>
+    </div>
+    <div class="copy">
+      <span>Rangoli Concepts Private Limited, 2026</span>
+      <span>Prices exclude GST · Design mockup</span>
+    </div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="dhead"><h3 id="drawerTitle">Cart</h3><button id="closeDrawer">Close</button></div>
+  <div class="ditems" id="ditems"></div>
+  <div class="dfoot" id="dfoot"></div>
+</div>
+
+<div class="modalwrap" id="modalwrap" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="mpanel" id="modalArt">
+      <h2>Pricing is shown to account holders.</h2>
+      <p>Specifications stay open to everyone. Sign in for rates, stock and ordering.</p>
+      <ul>
+        <li>Your contracted rate on every reference</li>
+        <li>Warehouse stock and lead times</li>
+        <li>Saved carts, reorders and GST invoicing</li>
+      </ul>
+    </div>
+    <div class="mform">
+      <button class="x" id="closeModal" aria-label="Close">&times;</button>
+      <h3 id="loginTitle">Sign in</h3>
+      <p>For homeowners, dealers, architects and contractors.</p>
+      <div class="tabs">
+        <button class="on" data-tab="otp">Mobile</button>
+        <button data-tab="pass">Email</button>
+      </div>
+      <div id="tabOtp">
+        <div class="field" id="fPhone">
+          <label for="phone">Mobile number</label>
+          <input id="phone" type="tel" inputmode="numeric" placeholder="98223 72299">
+          <div class="err">Enter a 10-digit mobile number.</div>
+        </div>
+        <div class="field" id="fOtp">
+          <label for="otp">One-time password</label>
+          <input id="otp" type="text" inputmode="numeric" placeholder="6-digit code">
+          <div class="err">Enter the 6-digit code we sent.</div>
+        </div>
+      </div>
+      <div id="tabPass" hidden>
+        <div class="field" id="fEmail">
+          <label for="email">Email or account ID</label>
+          <input id="email" type="text" placeholder="you@firm.in">
+          <div class="err">Enter the email on your account.</div>
+        </div>
+        <div class="field" id="fPass">
+          <label for="pass">Password</label>
+          <input id="pass" type="password" placeholder="••••••••">
+          <div class="err">Enter your password.</div>
+        </div>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" checked> Keep me signed in</label>
+        <button type="button">Need help?</button>
+      </div>
+      <button class="btn btn-primary" id="doLogin">Sign in</button>
+      <div class="alt">New here? <button type="button">Create an account</button> — trade pricing approved within one working day.</div>
+      <div class="demohint">Mockup: no backend yet. Any values sign you in, so you can compare the guest and signed-in views.</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="demo">
+  <span class="dot" id="demoDot"></span>
+  <span id="demoLabel">Viewing as guest</span>
+  <button id="demoSwitch">Sign in</button>
+</div>
+
+<script>
+/* ---------- brand assets from the live site ---------- */
+const SITE="https://www.rangoli.net.in/assets/img/";
+const LOGO_CANDIDATES=[SITE+"logo.png",SITE+"logo.svg",SITE+"logo-1.png",SITE+"logo1.png",SITE+"rangoli-logo.png"];
+const HERO_IMG=SITE+"about-2.jpg";
+const BRAND_IMGS=[["Simpolo","home/simpolo.jpg"],["Kohler","home/kohler.jpg"],["Jaquar","home/jaquar.jpg"],
+["Nexiaon","home/nexiaon.jpg"],["Mozart","home/mozart.jpg"],["Aqualent","home/aqualent.jpg"],
+["Nuvo","home/nuvo.jpg"],["Mapei","home/w-mapei.jpg"]];
+const CATS=[
+["Tiles","home/simpolo.jpg","Tiles & surfaces"],
+["CP Fittings","home/jaquar.jpg","CP fittings"],
+["Sanitaryware","home/kohler.jpg","Sanitaryware"],
+["Wellness","home/aqualent.jpg","Wellness"],
+["Sinks & Mirrors","home/nuvo.jpg","Sinks & mirrors"],
+["Adhesives & Tools","home/w-mapei.jpg","Adhesives & tools"]];
+
+/* ---------- catalogue data (unchanged) ---------- */
+const RAW=[
+["Statuario Bianco","Tiles","Simpolo","Glazed Vitrified","9 mm","Glossy","800 × 1600 mm",189,228,"#EFEDE8",2,"sq.ft"],
+["Carrara Satin","Tiles","Simpolo","Glazed Vitrified","9 mm","Satin","600 × 1200 mm",142,172,"#E8E6E0",2,"sq.ft"],
+["Terrazzo Grigio","Tiles","Nexiaon","Full Body Vitrified","10 mm","Matte","600 × 600 mm",118,144,"#DCD8CE",3,"sq.ft"],
+["Oakwood Plank","Tiles","Mozart","Ceramic","8 mm","Rustic","200 × 1200 mm",96,118,"#BC9A72",1,"sq.ft"],
+["Concrete Ash","Tiles","Nexiaon","Full Body Vitrified","10 mm","Matte","800 × 800 mm",124,150,"#ADAAA3",3,"sq.ft"],
+["Emperador Dark","Tiles","Simpolo","Glazed Vitrified","9 mm","Polished","800 × 1600 mm",208,249,"#584634",2,"sq.ft"],
+["Onyx Amber","Tiles","Simpolo","Glazed Vitrified","9 mm","Glossy","800 × 1600 mm",236,282,"#DCC79A",2,"sq.ft"],
+["Metro Bevel White","Tiles","Mozart","Ceramic","8 mm","Glossy","100 × 300 mm",82,99,"#F1EFEA",2,"sq.ft"],
+["Fluted Ochre","Tiles","Nuvo","Glazed Vitrified","10 mm","Satin","300 × 600 mm",148,178,"#C4A263",2,"sq.ft"],
+["Grip Court Grey","Tiles","Nexiaon","Full Body Vitrified","16 mm","Anti-skid","300 × 300 mm",88,108,"#93908A",3,"sq.ft"],
+["Cobble Terracotta","Tiles","Nuvo","Heavy Duty Vitrified","20 mm","Anti-skid","400 × 400 mm",106,128,"#A9694A",4,"sq.ft"],
+["Deck Teak Outdoor","Tiles","Mozart","Full Body Vitrified","20 mm","Rustic","300 × 1200 mm",172,206,"#9A7752",3,"sq.ft"],
+["Zellige Saffron","Tiles","Mozart","Ceramic","9 mm","Glossy","100 × 100 mm",192,230,"#D9A94D",2,"sq.ft"],
+["Hex Bone Marble Mosaic","Tiles","Nuvo","Marble Mosaic","10 mm","Honed","300 × 300 mm",316,378,"#E7E2D6",1,"sq.ft"],
+["Lime Wash Bone","Tiles","Simpolo","Ceramic","8 mm","Matte","300 × 600 mm",68,84,"#E9E3D6",2,"sq.ft"],
+["Kota Blue Honed","Tiles","Nexiaon","Kota Stone","25 mm","Honed","600 × 600 mm",94,116,"#6B7674",4,"sq.ft"],
+
+["Single Lever Basin Mixer","CP Fittings","Jaquar","Brass","—","Chrome","Deck mounted",4980,5900,"#CFD1D3",0,"each"],
+["Brushed Gold Basin Mixer","CP Fittings","Kohler","Brass","—","Brushed Gold","Deck mounted",12400,14800,"#C4A76C",0,"each"],
+["Wall Mixer with Shower Arm","CP Fittings","Jaquar","Brass","—","Chrome","Wall mounted",6850,8100,"#CBCED1",0,"each"],
+["Rain Shower Head 300","CP Fittings","Aqualent","Stainless Steel","—","Matte Black","300 × 300 mm",8900,10600,"#3B3B3B",0,"each"],
+["Concealed 3-Way Diverter","CP Fittings","Kohler","Brass","—","Chrome","Wall mounted",15600,18400,"#CFD1D3",0,"each"],
+["Health Faucet with Hose","CP Fittings","Jaquar","Brass","—","Chrome","1 m hose",1450,1780,"#CBCED1",0,"each"],
+
+["Wall Hung WC Rimless","Sanitaryware","Kohler","Vitreous China","—","Matte White","540 × 360 mm",26800,31500,"#F1EFEA",0,"each"],
+["One Piece Siphonic WC","Sanitaryware","Simpolo","Vitreous China","—","Glossy","680 × 380 mm",18400,21900,"#F4F2ED",0,"each"],
+["Counter Top Basin Arc","Sanitaryware","Simpolo","Vitreous China","—","Matte","420 × 420 mm",5450,6500,"#EDEBE5",0,"each"],
+["Concealed Cistern Frame","Sanitaryware","Aqualent","Steel & PP","—","Matte","Standard",14200,16900,"#C2C5C7",0,"each"],
+
+["Freestanding Soaking Tub","Wellness","Kohler","Acrylic","—","Glossy","1700 × 800 mm",168000,196000,"#F4F2ED",0,"each"],
+["Steam Shower Enclosure","Wellness","Aqualent","Tempered Glass","8 mm","Clear","900 × 900 mm",96500,114000,"#D5DEE0",0,"each"],
+
+["Quartz Kitchen Sink Single Bowl","Sinks & Mirrors","Nuvo","Granite Composite","—","Matte","600 × 460 mm",14900,17600,"#55544F",0,"each"],
+["LED Backlit Mirror","Sinks & Mirrors","Aqualent","Toughened Glass","5 mm","Anti-fog","900 × 600 mm",11200,13400,"#E0E7E9",0,"each"],
+
+["Tile Adhesive Type 3","Adhesives & Tools","Mapei","Cementitious","—","Grey","20 kg bag",780,920,"#B6B3AC",0,"bag"],
+["Epoxy Grout Kit","Adhesives & Tools","Mapei","Epoxy","—","Matte","2 kg pack",1450,1720,"#DDD6C4",0,"pack"]
+];
+
+const P=RAW.map((r,i)=>({
+  id:i+1, sku:"RC-"+(2100+i*7),
+  name:r[0],category:r[1],brand:r[2],material:r[3],thickness:r[4],finish:r[5],
+  size:r[6],rate:r[7],mrp:r[8],tone:r[9],grout:r[10],unit:r[11]
+}));
+
+const FACETS=[
+  {key:"category",label:"Category"},
+  {key:"brand",label:"Brand",guestOnly:true},
+  {key:"material",label:"Material"},
+  {key:"thickness",label:"Thickness"},
+  {key:"finish",label:"Finish"},
+  {key:"size",label:"Size / format"}
+];
+
+const state={
+  auth:false,
+  user:{name:"Rohit Malviya",firm:"Malviya Interiors",initials:"RM"},
+  sel:{},search:"",sort:"featured",
+  collapsed:{material:true,thickness:true,finish:true,size:true},
+  cart:{},tab:"otp"
+};
+FACETS.forEach(f=>state.sel[f.key]=new Set());
+
+const $=s=>document.querySelector(s);
+const money=n=>"₹"+n.toLocaleString("en-IN");
+
+/* ---------- logo ---------- */
+function logoMarkup(){
+  return `<img src="${LOGO_CANDIDATES[0]}" data-i="0" alt="Rangoli Concepts" onerror="nextLogo(this)">
+    <span class="wm" hidden><b>Rangoli</b><small>CONCEPTS</small></span>`;
+}
+function nextLogo(img){
+  const i=(+img.dataset.i)+1;
+  if(i<LOGO_CANDIDATES.length){ img.dataset.i=i; img.src=LOGO_CANDIDATES[i]; return; }
+  img.remove();
+  document.querySelectorAll(".logo .wm").forEach(f=>{
+    f.hidden=false;
+    const prev=f.previousElementSibling;
+    if(!prev||!prev.classList.contains("rmark")) f.insertAdjacentHTML("beforebegin",'<span class="rmark"></span>');
+  });
+}
+window.nextLogo=nextLogo;
+
+/* ---------- filtering ---------- */
+function activeFacets(){ return FACETS.filter(f=>!(f.guestOnly&&state.auth)); }
+function matches(p,skipKey){
+  for(const f of activeFacets()){
+    if(f.key===skipKey) continue;
+    const s=state.sel[f.key];
+    if(s.size&&!s.has(p[f.key])) return false;
+  }
+  if(state.search){
+    const q=state.search.toLowerCase();
+    const hay=[p.name,p.category,p.material,p.finish,p.size,p.thickness,state.auth?p.sku:p.brand].join(" ").toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  return true;
+}
+function results(){
+  let out=P.filter(p=>matches(p,null));
+  if(state.sort==="low") out.sort((a,b)=>a.rate-b.rate);
+  if(state.sort==="high") out.sort((a,b)=>b.rate-a.rate);
+  if(state.sort==="az") out.sort((a,b)=>a.name.localeCompare(b.name));
+  return out;
+}
+function cartCount(){ return Object.values(state.cart).reduce((a,b)=>a+b,0); }
+function cartTotal(){ return Object.entries(state.cart).reduce((s,[id,q])=>s+P.find(p=>p.id==id).rate*q,0); }
+
+/* ---------- render ---------- */
+function renderHeader(){
+  const c=cartCount();
+  $("#hright").innerHTML = state.auth
+    ? `<button id="openSearch">Search</button>
+       <div class="who"><b>${state.user.name}</b><em>${state.user.firm}</em></div>
+       <button id="openCart">Cart${c?` <span class="count">${c}</span>`:""}</button>
+       <button id="logout">Sign out</button>`
+    : `<button id="openSearch">Search</button>
+       <button id="openCart">Enquiry${c?` <span class="count">${c}</span>`:""}</button>
+       <button data-login="1" style="color:var(--ink)">Sign in</button>`;
+}
+function renderNotice(){
+  $("#notice").innerHTML = state.auth
+    ? `<div class="notice"><span class="k">Signed in</span>
+        <p><b>${state.user.firm}.</b> Your rate appears on every reference and you can order online. Brand names are no longer listed — everything ships under a Rangoli reference.</p></div>`
+    : `<div class="notice"><span class="k">Guest</span>
+        <p><b>Specifications are open to everyone.</b> Category, brand, material, thickness and finish are all visible. Sign in to see pricing and order; until then you can build an enquiry list.</p></div>`;
+}
+function renderCats(){
+  $("#cats").innerHTML=CATS.map(c=>{
+    const n=P.filter(p=>p.category===c[0]).length;
+    const on=state.sel.category.has(c[0])?" on":"";
+    return `<button class="cat${on}" data-cat="${c[0]}">
+      <span class="art"><img src="${SITE+c[1]}" alt="" loading="lazy" onerror="this.style.display='none'"></span>
+      <h3>${c[2]}</h3><span>${n} reference${n>1?"s":""}</span></button>`;
+  }).join("");
+}
+function renderBrands(){
+  $("#brandSec").hidden=state.auth;
+  if(state.auth) return;
+  $("#brands").innerHTML=BRAND_IMGS.map(b=>
+    `<button data-brand="${b[0]}" class="${state.sel.brand.has(b[0])?"on":""}">${b[0]}</button>`).join("");
+}
+function renderFilters(){
+  const host=$("#filterGroups"); host.innerHTML="";
+  activeFacets().forEach(f=>{
+    const vals=[...new Set(P.map(p=>p[f.key]))].filter(v=>v!=="—");
+    const g=document.createElement("div");
+    g.className="group"+(state.collapsed[f.key]?" collapsed":"");
+    const chosen=state.sel[f.key].size;
+    g.innerHTML=`<h4 data-toggle="${f.key}">${f.label}<span class="cnt">${chosen?chosen:(state.collapsed[f.key]?"+":"−")}</span></h4>
+      <div class="opts">${vals.map(v=>{
+        const n=P.filter(p=>p[f.key]===v&&matches(p,f.key)).length;
+        return `<label class="opt"><input type="checkbox" data-k="${f.key}" value="${v}" ${state.sel[f.key].has(v)?"checked":""}>${v}<span class="n">${n}</span></label>`;
+      }).join("")}</div>`;
+    host.appendChild(g);
+  });
+  $("#brandLock").hidden=!state.auth;
+}
+function renderChips(){
+  const items=[];
+  activeFacets().forEach(f=>state.sel[f.key].forEach(v=>items.push({k:f.key,v})));
+  $("#chips").innerHTML=items.map(i=>`<span class="chip">${i.v}<button data-rm-k="${i.k}" data-rm-v="${i.v}" aria-label="Remove ${i.v}">×</button></span>`).join("");
+}
+function renderSort(){
+  const opts=state.auth
+    ? [["featured","Featured"],["low","Price, low to high"],["high","Price, high to low"],["az","Name, A–Z"]]
+    : [["featured","Featured"],["az","Name, A–Z"]];
+  if(!state.auth&&(state.sort==="low"||state.sort==="high")) state.sort="featured";
+  $("#sort").innerHTML=opts.map(o=>`<option value="${o[0]}" ${state.sort===o[0]?"selected":""}>${o[1]}</option>`).join("");
+}
+function fillStyle(p){
+  const px=p.size.includes("100 × 100")||p.size.includes("300 × 300")?30:64;
+  const lines=p.grout
+    ? `background-image:linear-gradient(to right,rgba(255,255,255,.4) ${p.grout}px,transparent ${p.grout}px),linear-gradient(to bottom,rgba(255,255,255,.4) ${p.grout}px,transparent ${p.grout}px);background-size:${px}px 100%,100% ${px}px;`
+    : "";
+  return `background-color:${p.tone};${lines}`;
+}
+function card(p){
+  const buy = state.auth
+    ? `<div class="price"><b>${money(p.rate)}</b> <span>/ ${p.unit}</span><span class="mrp">${money(p.mrp)}</span></div>
+       <button class="tlink" data-add="${p.id}">Add to cart</button>`
+    : `<button class="tlink gold" data-login="1">Sign in for price</button>
+       <button class="tlink" data-add="${p.id}">Add to enquiry</button>`;
+  return `<article class="card">
+    <div class="art"><span class="fill" style="${fillStyle(p)}"></span><span class="sz">${p.size}</span></div>
+    <div class="label">${p.category}</div>
+    <h3>${p.name}</h3>
+    <div class="meta">${state.auth?`${p.material} · ${p.finish}`:`${p.brand} · ${p.material} · ${p.finish}`}</div>
+    <div class="buy">${buy}</div>
+  </article>`;
+}
+function renderGrid(){
+  const r=results();
+  $("#grid").innerHTML=r.length?r.map(card).join("")
+    : `<div class="empty"><b>Nothing matches that combination</b>Try relaxing finish or thickness, or clear the filters to see all ${P.length} references.</div>`;
+  $("#resn").textContent=`${r.length} of ${P.length} references`;
+}
+function renderDrawer(){
+  const ids=Object.keys(state.cart);
+  $("#drawerTitle").textContent=state.auth?"Cart":"Enquiry list";
+  if(!ids.length){
+    $("#ditems").innerHTML=`<div class="dempty"><b>Nothing here yet</b>${state.auth?"Add references and check out with GST invoicing.":"Add references and we'll quote them, or sign in to see pricing now."}</div>`;
+    $("#dfoot").innerHTML=""; return;
+  }
+  $("#ditems").innerHTML=ids.map(id=>{
+    const p=P.find(x=>x.id==id),q=state.cart[id];
+    return `<div class="ditem">
+      <span class="th" style="${fillStyle(p)}"></span>
+      <div><h4>${p.name}</h4>
+        <small>${state.auth?p.sku:p.brand} · ${p.size}</small>
+        <div class="qty"><button data-q="-1" data-id="${p.id}">−</button><span>${q}</span><button data-q="1" data-id="${p.id}">+</button></div>
+        <button class="rm" data-rmid="${p.id}">Remove</button></div>
+      <div class="rt">${state.auth?money(p.rate*q):"<small>on sign in</small>"}</div>
+    </div>`;
+  }).join("");
+  $("#dfoot").innerHTML=state.auth
+    ? `<div class="trow"><span>Subtotal</span><span>${money(cartTotal())}</span></div>
+       <div class="trow"><span>GST 18%</span><span>${money(Math.round(cartTotal()*.18))}</span></div>
+       <div class="trow"><span>Delivery in Pune</span><span>Included</span></div>
+       <div class="trow total"><span>Total</span><span>${money(Math.round(cartTotal()*1.18))}</span></div>
+       <button class="btn btn-primary" id="checkout">Proceed to checkout</button>`
+    : `<div class="trow"><span>${cartCount()} reference${cartCount()>1?"s":""} listed</span><span>Pricing hidden</span></div>
+       <button class="btn btn-primary" data-login="1">Sign in to see pricing</button>
+       <button class="btn btn-ghost" id="sendEnq">Send enquiry on WhatsApp</button>`;
+}
+function renderDemo(){
+  $("#demoLabel").textContent=state.auth?"Viewing as account holder":"Viewing as guest";
+  $("#demoDot").className="dot"+(state.auth?" on":"");
+  $("#demoSwitch").textContent=state.auth?"Sign out":"Sign in";
+}
+function renderAll(){ renderHeader();renderNotice();renderCats();renderBrands();renderFilters();renderChips();renderSort();renderGrid();renderDrawer();renderDemo(); }
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const t=e.target;
+  const catBtn=t.closest("[data-cat]");
+  if(catBtn){
+    const c=catBtn.dataset.cat;
+    state.sel.category.has(c)?state.sel.category.delete(c):(state.sel.category.clear(),state.sel.category.add(c));
+    renderCats();renderFilters();renderChips();renderGrid();
+    document.getElementById("catalogue").scrollIntoView({behavior:"smooth"});
+    return;
+  }
+  const brandBtn=t.closest("[data-brand]");
+  if(brandBtn){
+    const b=brandBtn.dataset.brand;
+    state.sel.brand.has(b)?state.sel.brand.delete(b):state.sel.brand.add(b);
+    renderBrands();renderFilters();renderChips();renderGrid();
+    document.getElementById("catalogue").scrollIntoView({behavior:"smooth"});
+    return;
+  }
+  const tog=t.closest("[data-toggle]");
+  if(tog){ const k=tog.dataset.toggle; state.collapsed[k]=!state.collapsed[k]; renderFilters(); return; }
+  if(t.closest("[data-rm-k]")){ const b=t.closest("[data-rm-k]"); state.sel[b.dataset.rmK].delete(b.dataset.rmV); renderCats();renderBrands();renderFilters();renderChips();renderGrid(); return; }
+  if(t.id==="clearAll"||t.id==="clearCat"){ FACETS.forEach(f=>state.sel[f.key].clear()); state.search=""; $("#search").value=""; renderAll(); return; }
+  if(t.closest("[data-login]")){ openModal(); return; }
+  if(t.id==="logout"){ state.auth=false; renderAll(); toast("Signed out. Pricing is hidden again."); return; }
+  if(t.closest("[data-add]")){
+    const id=t.closest("[data-add]").dataset.add;
+    state.cart[id]=(state.cart[id]||0)+1;
+    renderHeader();renderDrawer();
+    toast(state.auth?"Added to cart":"Added to your enquiry list");
+    return;
+  }
+  if(t.closest("[data-q]")){
+    const b=t.closest("[data-q]"),id=b.dataset.id;
+    state.cart[id]=(state.cart[id]||0)+(+b.dataset.q);
+    if(state.cart[id]<1) delete state.cart[id];
+    renderHeader();renderDrawer(); return;
+  }
+  if(t.closest("[data-rmid]")){ delete state.cart[t.closest("[data-rmid]").dataset.rmid]; renderHeader();renderDrawer(); return; }
+  if(t.closest("#openCart")){ openDrawer(); return; }
+  if(t.closest("#openSearch")){ $("#searchrow").hidden=false; $("#search").focus(); return; }
+  if(t.id==="closeSearch"){ $("#searchrow").hidden=true; return; }
+  if(t.id==="closeDrawer"||t.id==="scrim"){ closeDrawer(); return; }
+  if(t.id==="closeModal"||t.id==="modalwrap"){ closeModal(); return; }
+  if(t.id==="doLogin"){ submitLogin(); return; }
+  if(t.dataset&&t.dataset.tab){ state.tab=t.dataset.tab; switchTab(); return; }
+  if(t.id==="checkout"){ toast("Checkout is not wired up in this mockup"); return; }
+  if(t.id==="sendEnq"){ toast("This would open WhatsApp with your list"); return; }
+  if(t.id==="demoSwitch"){ if(state.auth){ state.auth=false; renderAll(); toast("Now viewing as a guest"); } else openModal(); return; }
+});
+document.addEventListener("change",e=>{
+  if(e.target.dataset&&e.target.dataset.k){
+    const k=e.target.dataset.k,v=e.target.value;
+    e.target.checked?state.sel[k].add(v):state.sel[k].delete(v);
+    renderCats();renderBrands();renderFilters();renderChips();renderGrid();
+  }
+  if(e.target.id==="sort"){ state.sort=e.target.value; renderGrid(); }
+});
+$("#search").addEventListener("input",e=>{ state.search=e.target.value.trim(); renderFilters(); renderGrid(); });
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){ closeModal(); closeDrawer(); $("#searchrow").hidden=true; }
+  if(e.key==="Enter"&&!$("#modalwrap").hidden) submitLogin();
+});
+addEventListener("scroll",()=>{ $("#header").classList.toggle("stuck",scrollY>12); },{passive:true});
+
+/* ---------- drawer + modal ---------- */
+function openDrawer(){ $("#drawer").hidden=false; $("#scrim").hidden=false; }
+function closeDrawer(){ $("#drawer").hidden=true; $("#scrim").hidden=true; }
+let lastFocus=null;
+function openModal(){ lastFocus=document.activeElement; $("#modalwrap").hidden=false; setTimeout(()=>{(state.tab==="otp"?$("#phone"):$("#email")).focus();},30); }
+function closeModal(){ $("#modalwrap").hidden=true; document.querySelectorAll(".field").forEach(f=>f.classList.remove("bad")); if(lastFocus) lastFocus.focus(); }
+function switchTab(){
+  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===state.tab));
+  $("#tabOtp").hidden=state.tab!=="otp";
+  $("#tabPass").hidden=state.tab!=="pass";
+}
+function submitLogin(){
+  let ok=true;
+  if(state.tab==="otp"){
+    const ph=$("#phone").value.replace(/\D/g,""),otp=$("#otp").value.trim();
+    ok=ph.length>=10&&otp.length>=4;
+    $("#fPhone").classList.toggle("bad",ph.length<10);
+    $("#fOtp").classList.toggle("bad",otp.length<4);
+  }else{
+    const em=$("#email").value.trim(),pw=$("#pass").value.trim();
+    ok=!!em&&!!pw;
+    $("#fEmail").classList.toggle("bad",!em);
+    $("#fPass").classList.toggle("bad",!pw);
+    if(em){
+      const nm=em.split("@")[0].replace(/[._-]/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+      if(nm.length>2){ state.user.name=nm; state.user.initials=nm.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase(); }
+    }
+  }
+  if(!ok) return;
+  state.auth=true; state.sel.brand.clear();
+  closeModal(); renderAll();
+  toast("Signed in. Your rates are now showing.");
+}
+function toast(m){ const el=$("#toast"); el.textContent=m; el.classList.add("on"); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"),2600); }
+
+/* ---------- boot ---------- */
+$("#logo").innerHTML=logoMarkup();
+$("#logoFoot").innerHTML=logoMarkup();
+$("#heroArt").style.backgroundImage=`url("${HERO_IMG}")`;
+$("#modalArt").style.backgroundImage=`url("${HERO_IMG}")`;
+switchTab();
+renderAll();
+</script>
+</body>
+</html>
