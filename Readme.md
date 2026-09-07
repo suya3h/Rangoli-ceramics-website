@@ -99,6 +99,48 @@ The interface also includes enquiry-oriented states because a high-value showroo
 
 The prototype also explores guest and authenticated customer states, including account-related interface elements and sign-in interactions.
 
+### Customer access and pricing
+
+The catalogue intentionally changes depending on whether a customer is browsing as a guest or has logged in.
+
+Before login, customers can:
+
+- Browse products
+- View product attributes and specifications
+- Explore available product categories
+- Explore product information
+- See the available product brands
+
+However, **product prices are not visible before login**.
+
+After login, customers gain access to product pricing, but the brand information is no longer displayed.
+
+This separation is intentional.
+
+The idea is to allow customers to evaluate products based on their specifications and attributes before revealing commercial information, while removing the brand as a visible factor once pricing becomes available.
+
+This helps reduce the possibility of the purchasing decision being influenced primarily by brand recognition and encourages comparison based on the actual product attributes and price.
+
+The intended flow is:
+
+```text
+Guest
+  ↓
+Explore products
+  ↓
+Compare attributes / specifications / brands
+  ↓
+Login
+  ↓
+View pricing
+  ↓
+Evaluate products based on attributes + price
+  ↓
+Enquire / Add to cart
+```
+
+The prototype therefore treats authentication not only as an account feature, but as part of the product-discovery and purchasing experience.
+
 ### Responsive design
 
 The catalogue was designed to adapt to different screen sizes.
