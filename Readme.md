@@ -4,7 +4,7 @@ A responsive e-commerce website prototype for Rangoli Concepts, designed around 
 
 The project explores how a traditional showroom-oriented business could translate its product catalogue into a structured digital experience without losing the clarity of the physical buying process.
 
-![Rangoli Concepts](rangoli.png)
+<img width="1920" height="873" alt="Rangoli" src="https://github.com/user-attachments/assets/9c2212e2-8910-4370-a134-3b9f52cc395f" />
 
 ## The problem
 
